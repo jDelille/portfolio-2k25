@@ -1,94 +1,83 @@
-import Image from "next/image";
+"use client";
+
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
 import styles from "./page.module.css";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Home() {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: contentRef.current,
+        start: "bottom bottom-=280",
+        toggleActions: "play none none reverse",
+        onEnter: () => {
+          gsap.to(contentRef.current, {
+            scaleX: 0.91,
+            yPercent: -20,
+            ease: "power2.out",
+            duration: 0.5,
+            borderBottomLeftRadius: "22px",
+            borderBottomRightRadius: "22px",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(contentRef.current, {
+            scaleX: 1,
+            yPercent: 0,
+            ease: "power2.out",
+            duration: 0.5,
+            borderBottomLeftRadius: "0px",
+            borderBottomRightRadius: "0px",
+          });
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      <div className={styles.content} ref={contentRef}>
+        <h2>This is the content</h2>
+        <div className={styles.test}></div>
+      </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        <div className={styles.footerSection}>
+          <p className={styles.title}>Projects</p>
+          <ul className={styles.list}>
+            <li>Project 1</li>
+            <li>Project 2</li>
+            <li>Muunifi</li>
+            <li>Project 4</li>
+
+          </ul>
+        </div>
+        <div className={styles.footerSection}>
+          <p className={styles.title}>Site map</p>
+          <ul className={styles.list2}>
+            <li>Home</li>
+            <li>Projects</li>
+            <li>About me</li>
+            <li>Showcase</li>
+
+          </ul>
+        </div>
+        
+        <div className={styles.bottomLinks}>
+          <p>Justin Delille</p>
+          <p>Portfolio</p>
+          <p>LOGO</p>
+        </div>
       </footer>
     </div>
   );
