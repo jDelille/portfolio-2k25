@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
-
-import styles from "./page.module.css";
+import Footer from "@/components/footer/Footer";
+import styles from "../scss/page.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +19,7 @@ export default function Home() {
         toggleActions: "play none none reverse",
         onEnter: () => {
           gsap.to(contentRef.current, {
-            scaleX: 0.91,
+            scaleX: 0.90,
             yPercent: -20,
             ease: "power2.out",
             duration: 0.5,
@@ -50,35 +50,7 @@ export default function Home() {
         <div className={styles.test}></div>
       </div>
 
-      <footer className={styles.footer}>
-
-        <div className={styles.footerSection}>
-          <p className={styles.title}>Projects</p>
-          <ul className={styles.list}>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Muunifi</li>
-            <li>Project 4</li>
-
-          </ul>
-        </div>
-        <div className={styles.footerSection}>
-          <p className={styles.title}>Site map</p>
-          <ul className={styles.list2}>
-            <li>Home</li>
-            <li>Projects</li>
-            <li>About me</li>
-            <li>Showcase</li>
-
-          </ul>
-        </div>
-        
-        <div className={styles.bottomLinks}>
-          <p>Justin Delille</p>
-          <p>Portfolio</p>
-          <p>LOGO</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
