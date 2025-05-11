@@ -1,25 +1,15 @@
 .page {
-    position: relative;
-    height: auto;
-    background-color: #dddddd;
-    padding-bottom: 30vh;
+  width: 1440px;
+  max-width: 1440px;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  .fixed {
+    position: fixed;
+  }
+  .scroll {
+    margin-left: auto;
     min-height: 100vh;
-  }
-  
-  .contentWrapper {
     position: relative;
-    z-index: 1;
   }
-  
-  .content {
-    width: 100vw;
-    background-color: white;
-    transform-origin: center top;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .test {
-    height: 200vh;
-  }
-  
+}

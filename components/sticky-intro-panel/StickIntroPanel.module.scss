@@ -1,0 +1,51 @@
+@use '../../scss/variables.scss' as var;
+
+.container {
+    width: 100%;
+	max-width: 496px;
+	min-width: 496px;
+	height: 90vh;
+	position: relative;
+	padding: 80px 45px;
+	max-height: 1200px;
+    
+    h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		letter-spacing: 2px;
+	}
+    h2 {
+        margin-top: 0.5rem;
+		font-size: 2rem;
+	}
+    .bio {
+		margin-top: 1.5rem;
+		color: var.$gray;
+		line-height: var.$lineHeightLG;
+	}
+
+    .socials {
+        margin-top: 2rem;
+		display: flex;
+		align-items: center;
+		position: absolute;
+		bottom: 2rem;
+		padding-top: 2rem;
+        img {
+			max-width: 45px;
+			border-radius: 50%;
+			margin-right: 2rem;
+		}
+        .social {
+            display: flex;
+			align-items: center;
+			gap: 1rem;
+			margin-right: 2rem;
+            cursor: pointer;
+            font-size: 14px;
+            &:hover {
+				color: var.$honey;
+            }
+        }
+    }
+}

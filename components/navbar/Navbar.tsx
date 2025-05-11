@@ -9,6 +9,7 @@ const Navbar: React.FC<NavbarProps> = () => {
     <div className={styles.navbar}>
       <p className={styles.logo}>Justin D.</p>
       <ul className={styles.links}>
+        <Link href={"/"}>Home</Link>
         <Link href="/projects">Projects</Link>
         <Link href="/about-me">About me</Link>
         <Link href="/showcase">Showcase</Link>

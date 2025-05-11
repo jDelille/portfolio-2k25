@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.scss";
+import Link from "next/link";
 
 type FooterProps = {};
 
@@ -10,16 +11,16 @@ const Footer: React.FC<FooterProps> = () => {
         <div className={styles.projects}>
           <p className={styles.title}>Projects</p>
           <ul className={styles.projectsList}>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Muunifi</li>
+            <Link href="/project/fretted">Fretted</Link>
+            <Link href="/project/prophit">PropHit</Link>
+            <Link href="/project/muunifi">Muunifi</Link>
             <li>Project 4</li>
           </ul>
         </div>
         <div className={styles.sitemap}>
           <p className={styles.title}>Sitemap</p>
           <ul className={styles.sitemapList}>
-            <li>Home</li>
+            <Link href="/">Home</Link>
             <li>Projects</li>
             <li>About me</li>
             <li>Showcase</li>
