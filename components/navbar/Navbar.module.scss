@@ -1,0 +1,30 @@
+.navbar {
+  height: 65px;
+  display: flex;
+  padding: 1rem 300px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  font-weight: 500;
+  font-family: var(--font-noto-sans);
+  font-size: 14px;
+  .logo {
+    width: 25%;
+  }
+  .links {
+    display: flex;
+    list-style-type: none;
+    gap: 1rem;
+    width: 50%;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .extra {
+    width: 25%;
+    text-align: right;
+  }
+}

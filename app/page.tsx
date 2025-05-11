@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Footer from "@/components/footer/Footer";
 import styles from "../scss/page.module.scss";
+import Navbar from "@/components/navbar/Navbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +47,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <div className={styles.content} ref={contentRef}>
-        <h2>This is the content</h2>
+        <Navbar />
         <div className={styles.test}></div>
       </div>
 
