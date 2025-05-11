@@ -13,7 +13,8 @@
 			gap: 1rem;
 			cursor: pointer;
 			width: fit-content;
-            a {
+            .inactive,
+			.active {
                 color: var.$gray;
 				text-decoration: none;
 				display: flex;
@@ -22,26 +23,37 @@
                 .extendedLine {
 					display: block;
 					width: 85px;
-					height: 1px;
-					background-color: var.$lead;
+					height: 2px;
+					background-color: #4644DC;
 					transition: width 0.3s ease-in-out;
 				}
 				.shortLine {
 					display: block;
 					width: 50px;
-					height: 1px;
+					height: 2px;
 					background-color: var.$gray;
 					transition: width 0.3s ease-in-out;
 				}
-                .number {
-                    max-width: 20px;
-                    min-width: 20px;
-                    display: flex;
-                    justify-content: center;
-                    color: var.$lead;
-                }
+              
                 
             }
+			.active {
+				color: #4644DC;
+				font-weight: 500;
+			}
+			.number,
+			.activeNumber {
+				max-width: 20px;
+				min-width: 20px;
+				display: flex;
+				justify-content: center;
+				color: var.$lead;
+			}
+
+			.activeNumber {
+				color: #4644DC;
+				font-weight: 500;
+			}
         }
     }
 }

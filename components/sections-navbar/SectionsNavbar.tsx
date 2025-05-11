@@ -48,6 +48,15 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
     setTimeout(() => setScrollEnabled(true), 1000);
   };
 
+  const getLineClass = (linkId: string) => 
+    activeLink === linkId ? styles.extendedLine : styles.shortLine;
+
+  const getActiveClass = (linkId: string) =>
+  activeLink === linkId ? `${styles.number} ${styles.activeNumber}` : styles.number;
+
+  const getActiveLabel = (linkId: string) => 
+    activeLink === linkId ? styles.active : styles.inactive;
+
   return (
     <Scrollspy items={sectionIds} currentClassName="is-active">
       <nav className={styles.navbar}>
@@ -59,15 +68,10 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
               handleNavClick("projects");
             }}
           >
-            <span className={styles.number}>01</span>
-            <a href="#projects">
-              <span
-                className={
-                  activeLink === "projects"
-                    ? styles.extendedLine
-                    : styles.shortLine
-                }
-              ></span>
+            <span className={getActiveClass("projects")}>01</span>
+            <a href="#projects" className={getActiveLabel("projects")}>
+            <span className={getLineClass("projects")} />
+
               Projects
             </a>
           </li>
@@ -78,15 +82,10 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
               handleNavClick("about");
             }}
           >
-            <span className={styles.number}>02</span>
-            <a href="#about">
-              <span
-                className={
-                  activeLink === "about"
-                    ? styles.extendedLine
-                    : styles.shortLine
-                }
-              ></span>
+            <span className={getActiveClass("about")}>02</span>
+            <a href="#about" className={getActiveLabel("about")}>
+            <span className={getLineClass("about")} />
+
               About
             </a>
           </li>
@@ -97,15 +96,10 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
               handleNavClick("contact");
             }}
           >
-            <span className={styles.number}>03</span>
-            <a href="#contact">
-              <span
-                className={
-                  activeLink === "contact"
-                    ? styles.extendedLine
-                    : styles.shortLine
-                }
-              ></span>
+            <span className={getActiveClass("contact")}>03</span>
+            <a href="#contact" className={getActiveLabel("contact")}>
+            <span className={getLineClass("contact")} />
+
               Contact
             </a>
           </li>
