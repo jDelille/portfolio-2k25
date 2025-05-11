@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Scrollspy from "react-scrollspy";
+"use client";
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import { Scrollspy } from "@makotot/ghostui";
 import styles from "./SectionsNavbar.module.scss";
 
 type SectionsNavbarProps = {
@@ -11,8 +12,10 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
   onSetActiveLink,
   activeLink,
 }) => {
-  const sectionIds = useMemo(() => ["projects", "about", "contact"], []);
+  const sectionIds = ["projects", "about", "contact"];
   const [scrollEnabled, setScrollEnabled] = useState(true);
+
+  const sectionRefs = sectionIds.map(() => useRef<HTMLDivElement>(null));     
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,12 +37,10 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
       }
     };
 
-    const cleanup = () => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return cleanup;
   }, [sectionIds, onSetActiveLink, scrollEnabled]);
 
   const handleNavClick = (link: string) => {
@@ -48,63 +49,68 @@ const SectionsNavbar: React.FC<SectionsNavbarProps> = ({
     setTimeout(() => setScrollEnabled(true), 1000);
   };
 
-  const getLineClass = (linkId: string) => 
+  const getLineClass = (linkId: string) =>
     activeLink === linkId ? styles.extendedLine : styles.shortLine;
 
   const getActiveClass = (linkId: string) =>
-  activeLink === linkId ? `${styles.number} ${styles.activeNumber}` : styles.number;
+    activeLink === linkId
+      ? `${styles.number} ${styles.activeNumber}`
+      : styles.number;
 
-  const getActiveLabel = (linkId: string) => 
+  const getActiveLabel = (linkId: string) =>
     activeLink === linkId ? styles.active : styles.inactive;
 
   return (
-    <Scrollspy items={sectionIds} currentClassName="is-active">
-      <nav className={styles.navbar}>
-        <ul>
-          <li
-            className={styles.navLink}
-            onClick={() => {
-              onSetActiveLink("projects");
-              handleNavClick("projects");
-            }}
-          >
-            <span className={getActiveClass("projects")}>01</span>
-            <a href="#projects" className={getActiveLabel("projects")}>
-            <span className={getLineClass("projects")} />
+    <Scrollspy
+      sectionRefs={sectionRefs}
+    >
+      {({ elementsStatusInViewport, currentElementIndexInViewport }) => (
+        <nav className={styles.navbar}>
+          <ul>
+            <li
+              className={styles.navLink}
+              onClick={() => {
+                onSetActiveLink("projects");
+                handleNavClick("projects");
+              }}
+            >
+              <span className={getActiveClass("projects")}>01</span>
+              <a href="#projects" className={getActiveLabel("projects")}>
+                <span className={getLineClass("projects")} />
+                Projects
+              </a>
+            </li>
 
-              Projects
-            </a>
-          </li>
-          <li
-            className={styles.navLink}
-            onClick={() => {
-              onSetActiveLink("about");
-              handleNavClick("about");
-            }}
-          >
-            <span className={getActiveClass("about")}>02</span>
-            <a href="#about" className={getActiveLabel("about")}>
-            <span className={getLineClass("about")} />
+            <li
+              className={styles.navLink}
+              onClick={() => {
+                onSetActiveLink("about");
+                handleNavClick("about");
+              }}
+            >
+              <span className={getActiveClass("about")}>02</span>
+              <a href="#about" className={getActiveLabel("about")}>
+                <span className={getLineClass("about")} />
+                About
+              </a>
+            </li>
 
-              About
-            </a>
-          </li>
-          <li
-            className={styles.navLink}
-            onClick={() => {
-              onSetActiveLink("contact");
-              handleNavClick("contact");
-            }}
-          >
-            <span className={getActiveClass("contact")}>03</span>
-            <a href="#contact" className={getActiveLabel("contact")}>
-            <span className={getLineClass("contact")} />
-
-              Contact
-            </a>
-          </li>
-        </ul>
-      </nav>
+            <li
+              className={styles.navLink}
+              onClick={() => {
+                onSetActiveLink("contact");
+                handleNavClick("contact");
+              }}
+            >
+              <span className={getActiveClass("contact")}>03</span>
+              <a href="#contact" className={getActiveLabel("contact")}>
+                <span className={getLineClass("contact")} />
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
     </Scrollspy>
   );
 };

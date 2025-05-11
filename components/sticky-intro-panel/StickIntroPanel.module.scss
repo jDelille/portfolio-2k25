@@ -11,15 +11,15 @@
     
     h1 {
 		font-size: 3rem;
-		font-weight: 800;
-		letter-spacing: 2px;
+		font-weight: 700;
 	}
     h2 {
-        margin-top: 0.5rem;
 		font-size: 2rem;
+		position: relative;
+		bottom: 10px;
 	}
     .bio {
-		margin-top: 1.5rem;
+		margin-top: 1rem;
 		color: var.$gray;
 		line-height: var.$lineHeightLG;
 	}

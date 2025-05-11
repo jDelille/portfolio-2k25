@@ -17,13 +17,14 @@ const Projects: React.FC = () => {
         {
           x: 300,       // from 300px to the right
           opacity: 0,
-          visibility: "visible",   
+          visibility: "visible",
         },
         {
           x: 0,         // to natural position
           opacity: 1,   // to fully visible
-          duration: 0.6,
+          duration: 1.2,
           stagger: 0.2,
+
           ease: "power2.out",
           immediateRender: true,
         }

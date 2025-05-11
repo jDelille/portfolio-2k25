@@ -7,7 +7,7 @@
 		flex-direction: column;
 		gap: 1rem;
         .navLink {
-            font-size: 16px;
+            font-size: 15px;
 			display: flex;
 			align-items: center;
 			gap: 1rem;
@@ -24,7 +24,7 @@
 					display: block;
 					width: 85px;
 					height: 2px;
-					background-color: #4644DC;
+					background-color: var.$blue;
 					transition: width 0.3s ease-in-out;
 				}
 				.shortLine {
@@ -38,8 +38,7 @@
                 
             }
 			.active {
-				color: #4644DC;
-				font-weight: 500;
+				color: var.$blue;
 			}
 			.number,
 			.activeNumber {
@@ -51,7 +50,7 @@
 			}
 
 			.activeNumber {
-				color: #4644DC;
+				color: var.$blue;
 				font-weight: 500;
 			}
         }
