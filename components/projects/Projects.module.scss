@@ -1,0 +1,27 @@
+.projectsList {
+    width: 100%;
+	max-width: 736px;
+	min-width: 736px;
+	margin-left: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	position: relative;
+	height: fit-content;
+	transition: all 200ms ease-in-out;
+	top: 80px;
+    .project {
+        background-color: #F3F5F9;
+		height: 216px;
+		width: 648px;
+		margin-right: auto;
+		padding: 16px 32px;
+		display: flex;
+		position: relative;
+		align-items: center;
+		cursor: pointer;
+        opacity: 0;
+        transform: translateX(300px);
+        visibility: hidden;
+    }
+}

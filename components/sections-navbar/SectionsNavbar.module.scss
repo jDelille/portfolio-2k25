@@ -1,0 +1,47 @@
+@use '../../scss/variables.scss' as var;
+
+.navbar {
+    margin: 3rem 0;
+    ul {
+        display: flex;
+		flex-direction: column;
+		gap: 1rem;
+        .navLink {
+            font-size: 16px;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			cursor: pointer;
+			width: fit-content;
+            a {
+                color: var.$gray;
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+                .extendedLine {
+					display: block;
+					width: 85px;
+					height: 1px;
+					background-color: var.$lead;
+					transition: width 0.3s ease-in-out;
+				}
+				.shortLine {
+					display: block;
+					width: 50px;
+					height: 1px;
+					background-color: var.$gray;
+					transition: width 0.3s ease-in-out;
+				}
+                .number {
+                    max-width: 20px;
+                    min-width: 20px;
+                    display: flex;
+                    justify-content: center;
+                    color: var.$lead;
+                }
+                
+            }
+        }
+    }
+}

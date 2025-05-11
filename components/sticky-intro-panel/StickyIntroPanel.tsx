@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./StickIntroPanel.module.scss";
+import SectionsNavbar from "../sections-navbar/SectionsNavbar";
 
-type StickyIntroPanelProps = {};
-const StickyIntroPanel: React.FC<StickyIntroPanelProps> = () => {
+type StickyIntroPanelProps = {
+  onSetActiveLink: (link: string) => void;
+  activeLink: string;
+};
+
+const StickyIntroPanel: React.FC<StickyIntroPanelProps> = ({ onSetActiveLink, activeLink }) => {
   return (
     <div className={styles.container}>
       <h1>Justin Delille</h1>
@@ -14,8 +19,11 @@ const StickyIntroPanel: React.FC<StickyIntroPanelProps> = () => {
         building.
       </p>
 
+      <SectionsNavbar onSetActiveLink={onSetActiveLink} activeLink={activeLink} />
+
       <div className={styles.socials}>
         <img src="/me.jpg" alt="" />
+
         <div className={styles.social}>
             Github
         </div>

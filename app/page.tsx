@@ -1,12 +1,10 @@
-import StickyIntroPanel from "@/components/sticky-intro-panel/StickyIntroPanel";
+import HomeContent from "@/components/home-content/HomeContent";
 import styles from "../scss/page.module.scss";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <div className={styles.fixed}>
-        <StickyIntroPanel />
-      </div>
+      <HomeContent />
     </div>
   );
 }

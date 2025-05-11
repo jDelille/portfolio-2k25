@@ -14,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add Google Fonts here */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -24,7 +23,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet"
-        ></link>{" "}
+        ></link>
       </head>
       <body>{children}</body>
     </html>

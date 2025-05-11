@@ -1,0 +1,19 @@
+@use '../../scss/variables.scss' as var;
+
+.homeContent {
+    width: 1440px;
+    max-width: 1440px;
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    overflow-y: hidden;
+
+    .fixed {
+      position: fixed;
+    }
+    .scroll {
+      margin-left: auto;
+      min-height: 100vh;
+      position: relative;
+    }
+  }
