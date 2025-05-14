@@ -1,10 +1,13 @@
-import React from "react";
+import React, { RefObject, useEffect } from "react";
 import styles from "./About.module.scss";
 
-type AboutProps = {};
+type AboutProps = {
+  
+};
 const About: React.FC<AboutProps> = () => {
+
   return (
-    <div className={styles.about}>
+    <div className={styles.about} id="about">
       <h1>About Me</h1>
       <p>
         Hey, I'm Justin. I love coding, creating websites, and learning new

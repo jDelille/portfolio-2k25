@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, RefObject } from "react";
 import styles from "./Projects.module.scss";
 import gsap from "gsap";
 
@@ -11,7 +11,10 @@ const projectImages: Record<string, string> = {
   Something: "/something.jpg"
 };
 
-const Projects: React.FC = () => {
+type ProjectsType = {
+}
+
+const Projects: React.FC<ProjectsType> = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
@@ -23,6 +26,7 @@ const Projects: React.FC = () => {
       itemRefs.current.push(el);
     }
   };
+
 
   useEffect(() => {
     const gallery = galleryRef.current;
@@ -105,7 +109,7 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <div className={styles.itemsWorks}>
+      <div id="projects" className={styles.itemsWorks}>
         {projectNames.map((name, index) => (
           <div key={index} ref={addToRefs} className={styles.itemWork}>
             {name}

@@ -5,6 +5,7 @@ import styles from "./HomeContent.module.scss";
 import StickyIntroPanel from "../sticky-intro-panel/StickyIntroPanel";
 import Projects from "../projects/Projects";
 import About from "../about/About";
+import Contact from "../contact/Contact";
 
 type HomeContentProps = {};
 const HomeContent: React.FC<HomeContentProps> = () => {
@@ -38,7 +39,7 @@ const HomeContent: React.FC<HomeContentProps> = () => {
     for (let i = 0; i < sectionIds.length; i++) {
       const sectionId = sectionIds[i];
       const sectionRef = sectionRefs[sectionId];
-      if (sectionRef.current) {
+      if (sectionRef?.current) {
         const top = sectionRef.current.offsetTop;
         const bottom = top + sectionRef.current.offsetHeight;
         if (scrollPosition >= top && scrollPosition < bottom) {
@@ -57,8 +58,9 @@ const HomeContent: React.FC<HomeContentProps> = () => {
         />
       </div>
       <div className={styles.scroll}>
-        <Projects />
-        <About />
+        <Projects  />
+        <About/>
+        <Contact />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./StickIntroPanel.module.scss";
 import SectionsNavbar from "../sections-navbar/SectionsNavbar";
+import { GithubIcon, LinkedinIcon } from "@/icons";
 
 type StickyIntroPanelProps = {
   onSetActiveLink: (link: string) => void;
@@ -25,9 +26,11 @@ const StickyIntroPanel: React.FC<StickyIntroPanelProps> = ({ onSetActiveLink, ac
         <img src="/me.jpg" alt="" />
 
         <div className={styles.social}>
+          <GithubIcon color="white" size={16}/>
             Github
         </div>
         <div className={styles.social}>
+          <LinkedinIcon color="white" size={16}/>
             Linkedin
         </div>
       </div>
