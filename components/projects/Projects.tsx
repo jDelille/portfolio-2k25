@@ -2,12 +2,13 @@ import React, { useRef, useState, useEffect } from "react";
 import styles from "./Projects.module.scss";
 import gsap from "gsap";
 
-const projectNames = ["Fretted", "Muunifi", "Prophit"];
+const projectNames = ["Fretted", "Muunifi", "Prophit", "Something"];
 
 const projectImages: Record<string, string> = {
   Fretted: "/fretted.jpg",
   Prophit: "/prophit.jpg",
   Muunifi: "/muunifi.jpg",
+  Something: "/something.jpg"
 };
 
 const Projects: React.FC = () => {
@@ -15,6 +16,7 @@ const Projects: React.FC = () => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<HTMLDivElement[]>([]);
+  const [animationComplete, setAnimationComplete] = useState(false);
 
   const addToRefs = (el: HTMLDivElement | null) => {
     if (el && !itemRefs.current.includes(el)) {
@@ -30,12 +32,16 @@ const Projects: React.FC = () => {
 
     gsap.set(gallery, { autoAlpha: 0 });
 
+
     gsap.from(itemRefs.current, {
-      x: 100,
-      opacity: 0,
-      stagger: 0.4,
+      x: 800,
+      opacity: 1,
+      stagger: 0.3,
       duration: 1,
-      ease: "power2.out",
+      ease: "circ.out",
+      onComplete: () => {
+        setAnimationComplete(true);
+      },
     });
 
     // Mouse move follows cursor
@@ -50,47 +56,52 @@ const Projects: React.FC = () => {
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
 
-    const container = document.querySelector(`.${styles.itemsWorks}`);
+    if(!animationComplete) {
+      window.addEventListener("mousemove", handleMouseMove);
 
-    container?.addEventListener("mouseenter", () => {
-      gsap.to(gallery, {
-        autoAlpha: 1,
-        duration: 0.4,
-        ease: "power1.out",
-        opacity: 1,
-        scale: 1,
-      });
-    });
-
-    container?.addEventListener("mouseleave", () => {
-      gsap.to(gallery, {
-        autoAlpha: 0,
-        duration: 0.4,
-        ease: "power1.out",
-        opacity: 0,
-        scale: 0,
-      });
-    });
-
-    itemRefs.current.forEach((el, i) => {
-      el.addEventListener("mouseenter", () => {
-        setActiveIndex(i);
-        gsap.to(images, {
-          y: -380 * i,
-          duration: 0.2,
+      const container = document.querySelector(`.${styles.itemsWorks}`);
+  
+      container?.addEventListener("mouseenter", () => {
+        gsap.to(gallery, {
+          autoAlpha: 1,
+          duration: 0.4,
           ease: "power1.out",
+          opacity: 1,
+          scale: 1,
         });
       });
-    });
+  
+      container?.addEventListener("mouseleave", () => {
+        gsap.to(gallery, {
+          autoAlpha: 0,
+          duration: 0.4,
+          ease: "power1.out",
+          opacity: 0,
+          scale: 0,
+        });
+      });
+  
+      itemRefs.current.forEach((el, i) => {
+        el.addEventListener("mouseenter", () => {
+          setActiveIndex(i);
+          gsap.to(images, {
+            y: -350 * i,
+            duration: 0.2,
+            ease: "power1.out",
+          });
+        });
+      });
+    }
+
+
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
-  const backgroundColors = ["#000", "#2f1e2e", "#1e2f2f"];
+  const backgroundColors = ["#000", "#2f1e2e", "#1e2f2f", "8321dwq"];
 
   return (
     <>

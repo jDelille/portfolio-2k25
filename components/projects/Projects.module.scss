@@ -1,3 +1,5 @@
+@use '../../scss/variables.scss' as var;
+
 .itemsWorks {
   width: 100%;
   max-width: 736px;
@@ -8,34 +10,33 @@
   gap: 0.5rem;
   position: relative;
   height: fit-content;
-  transition: all 200ms ease-in-out;
   top: 80px;
+  
 }
 
 .itemWork {
-  background-color: white;
-  height: 216px;
-  width: 100%;
-  margin-right: auto;
-  padding: 16px 32px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  cursor: pointer;
+	background-color: var.$lightBlue;
+	height: 216px;
+	width: 100%;
+	padding: 16px 32px;
+	display: flex;
+	position: relative;
+	align-items: center;
+	cursor: pointer;
+	will-change: transform, opacity;
 }
 
 .galleryWork {
 	position: fixed;
 	pointer-events: none;
 	z-index: 1000;
-	width: 380px;
-	height: 380px; /* match one imageWrapper */
-	background: #111;
+	width: 350px;
+	height: 350px; /* match one imageWrapper */
 	overflow: hidden;
 	display: flex;
 	align-items: flex-start; /* important */
 	justify-content: center;
-	opacity: 0;
+	// opacity: 0;
 	scale: 0;
   }
   
@@ -46,7 +47,7 @@
   }
 
   .imageWrapper {
-	height: 380px; /* match gallery height */
+	height: 350px; /* match gallery height */
 	width: 100%;
 	flex-shrink: 0;
 	display: flex;

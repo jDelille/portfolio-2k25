@@ -1,0 +1,18 @@
+.about {
+	width: 648px;
+	margin-right: auto;
+	display: flex;
+	margin-top: 45px;
+	flex-direction: column;
+	gap: 1rem;
+	position: relative;
+	height: fit-content;
+	transition: all 200ms ease-in-out;
+	margin-top: 7rem;
+	margin-bottom: 10rem;
+	padding-top: 45px;
+	min-height: 200vh;
+    h1 {
+        font-size: 24px;
+    }
+}

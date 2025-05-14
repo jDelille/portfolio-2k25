@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./HomeContent.module.scss";
 import StickyIntroPanel from "../sticky-intro-panel/StickyIntroPanel";
 import Projects from "../projects/Projects";
+import About from "../about/About";
 
 type HomeContentProps = {};
 const HomeContent: React.FC<HomeContentProps> = () => {
@@ -57,6 +58,7 @@ const HomeContent: React.FC<HomeContentProps> = () => {
       </div>
       <div className={styles.scroll}>
         <Projects />
+        <About />
       </div>
     </div>
   );
