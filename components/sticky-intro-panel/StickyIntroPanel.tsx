@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./StickIntroPanel.module.scss";
 import SectionsNavbar from "../sections-navbar/SectionsNavbar";
 import { GithubIcon, LinkedinIcon } from "@/icons";
+import gsap from "gsap";
 
 type StickyIntroPanelProps = {
   onSetActiveLink: (link: string) => void;
@@ -9,6 +10,26 @@ type StickyIntroPanelProps = {
 };
 
 const StickyIntroPanel: React.FC<StickyIntroPanelProps> = ({ onSetActiveLink, activeLink }) => {
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+  
+    const elements = ref.current.querySelectorAll("img, div");
+  
+    gsap.set(elements, { opacity: 0, y: 30 });
+  
+    gsap.to(elements, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "power2.out",
+      delay: 1
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1>Justin Delille</h1>
@@ -22,7 +43,7 @@ const StickyIntroPanel: React.FC<StickyIntroPanelProps> = ({ onSetActiveLink, ac
 
       <SectionsNavbar onSetActiveLink={onSetActiveLink} activeLink={activeLink} />
 
-      <div className={styles.socials}>
+      <div className={styles.socials} ref={ref}>
         <img src="/me.jpg" alt="" />
 
         <div className={styles.social}>

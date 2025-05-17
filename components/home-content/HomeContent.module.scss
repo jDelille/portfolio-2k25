@@ -6,8 +6,7 @@
     display: flex;
     position: relative;
     margin: 0 auto;
-    overflow-y: hidden;
-    overflow-x: hidden;
+
     .fixed {
       position: fixed;
     }
@@ -15,9 +14,6 @@
       margin-left: auto;
       min-height: 100vh;
       position: relative;
-      
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      padding-top: 80px;
     }
   }

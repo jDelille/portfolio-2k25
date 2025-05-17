@@ -15,7 +15,7 @@
 			width: fit-content;
             .inactive,
 			.active {
-                color: var.$gray;
+                color: rgb(175, 174, 174);
 				text-decoration: none;
 				display: flex;
 				align-items: center;
@@ -24,21 +24,21 @@
 					display: block;
 					width: 85px;
 					height: 2px;
-					background-color: var.$blue;
+					background-color: var.$honey;
 					transition: width 0.3s ease-in-out;
 				}
 				.shortLine {
 					display: block;
 					width: 50px;
 					height: 2px;
-					background-color: var.$gray;
+					background-color: rgb(175, 174, 174);
 					transition: width 0.3s ease-in-out;
 				}
               
                 
             }
 			.active {
-				color: var.$blue;
+				color: var.$honey;
 			}
 			.number,
 			.activeNumber {
@@ -46,11 +46,11 @@
 				min-width: 20px;
 				display: flex;
 				justify-content: center;
-				color: var.$gray;
+				color: rgb(175, 174, 174);
 			}
 
 			.activeNumber {
-				color: var.$blue;
+				color: var.$honey;
 				font-weight: 500;
 			}
         }

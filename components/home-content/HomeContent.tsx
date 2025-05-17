@@ -49,6 +49,10 @@ const HomeContent: React.FC<HomeContentProps> = () => {
     }
   }, [scrollPosition, sectionRefs]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={styles.homeContent}>
       <div className={styles.fixed}>
@@ -57,7 +61,7 @@ const HomeContent: React.FC<HomeContentProps> = () => {
           activeLink={activeLink}
         />
       </div>
-      <div className={styles.scroll}>
+      <div className={styles.scroll} >
         <Projects  />
         <About/>
         <Contact />

@@ -8,18 +8,31 @@ const projectImages: Record<string, string> = {
   Fretted: "/fretted.jpg",
   Prophit: "/prophit.jpg",
   Muunifi: "/muunifi.jpg",
-  Something: "/something.jpg"
+  Something: "/something.jpg",
 };
 
-type ProjectsType = {
-}
+type ProjectsType = {};
 
 const Projects: React.FC<ProjectsType> = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<HTMLDivElement[]>([]);
+  const contentRefs = useRef<HTMLDivElement[]>([]);
+
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [isAnyProjectHovered, setIsAnyProjectHovered] = useState(false);
+
+  const handleProjectHover = (index: number) => {
+    setHoveredProject(index);
+    setIsAnyProjectHovered(true);
+  };
+
+  const handleProjectLeave = () => {
+    setHoveredProject(null);
+    setIsAnyProjectHovered(false);
+  };
 
   const addToRefs = (el: HTMLDivElement | null) => {
     if (el && !itemRefs.current.includes(el)) {
@@ -27,25 +40,43 @@ const Projects: React.FC<ProjectsType> = () => {
     }
   };
 
+  const addToContentRefs = (el: HTMLDivElement | null) => {
+    if (el && !contentRefs.current.includes(el)) {
+      contentRefs.current.push(el);
+    }
+  };
 
   useEffect(() => {
     const gallery = galleryRef.current;
     const images = imagesRef.current;
+    const content = contentRefs.current;
 
-    if (!gallery || !images) return;
+    if (!gallery || !images || !content) return;
 
     gsap.set(gallery, { autoAlpha: 0 });
 
-
-    gsap.from(itemRefs.current, {
-      x: 800,
-      opacity: 1,
-      stagger: 0.3,
-      duration: 1,
-      ease: "circ.out",
-      onComplete: () => {
-        setAnimationComplete(true);
-      },
+    itemRefs.current.forEach((item, index) => {
+      gsap.set(contentRefs.current[index], { opacity: 0, y: 20 });
+    
+      gsap.from(item, {
+        x: 1000,
+        opacity: 1,
+        duration: 1,
+        delay: index * 0.3,
+        ease: "circ.out",
+      });
+    
+      gsap.to(contentRefs.current[index], {
+        opacity: 1,
+        y: -20,
+        duration: 0.4,
+        ease: "power2.out",
+        delay: index * 0.3 + 0.7, 
+      });
+    
+      if (index === itemRefs.current.length - 1) {
+        setTimeout(() => setAnimationComplete(true), (index * 0.3 + 1) * 1000);
+      }
     });
 
     // Mouse move follows cursor
@@ -60,12 +91,11 @@ const Projects: React.FC<ProjectsType> = () => {
       });
     };
 
-
-    if(!animationComplete) {
+    if (!animationComplete) {
       window.addEventListener("mousemove", handleMouseMove);
 
       const container = document.querySelector(`.${styles.itemsWorks}`);
-  
+
       container?.addEventListener("mouseenter", () => {
         gsap.to(gallery, {
           autoAlpha: 1,
@@ -75,7 +105,7 @@ const Projects: React.FC<ProjectsType> = () => {
           scale: 1,
         });
       });
-  
+
       container?.addEventListener("mouseleave", () => {
         gsap.to(gallery, {
           autoAlpha: 0,
@@ -85,20 +115,20 @@ const Projects: React.FC<ProjectsType> = () => {
           scale: 0,
         });
       });
-  
+
       itemRefs.current.forEach((el, i) => {
         el.addEventListener("mouseenter", () => {
           setActiveIndex(i);
           gsap.to(images, {
-            y: -350 * i,
+            y: -300 * i,
             duration: 0.2,
             ease: "power1.out",
           });
         });
       });
+
+
     }
-
-
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -107,12 +137,34 @@ const Projects: React.FC<ProjectsType> = () => {
 
   const backgroundColors = ["#000", "#2f1e2e", "#1e2f2f", "8321dwq"];
 
+  console.log(isAnyProjectHovered);
+
   return (
     <>
       <div id="projects" className={styles.itemsWorks}>
+        {isAnyProjectHovered && <div className={styles.overlay}></div>}
         {projectNames.map((name, index) => (
-          <div key={index} ref={addToRefs} className={styles.itemWork}>
-            {name}
+          <div
+            key={index}
+            ref={addToRefs}
+            className={styles.itemWork}
+            onMouseEnter={() => handleProjectHover(index)}
+            onMouseLeave={handleProjectLeave}
+          >
+            {isAnyProjectHovered && hoveredProject !== index && (
+              <div className={styles.overlay}></div>
+            )}
+            <div className={styles.content} ref={addToContentRefs}>
+              <p className={styles.build}>
+                Next.js / React / Typescript / Mobx / Firebase
+              </p>
+              <p className={styles.name}>{name}</p>
+              <p className={styles.description}>
+                Follow along, subscribe for exclusive access, create your own
+                content or build your own community through muunifi’s specific
+                social financial tools.
+              </p>
+            </div>
           </div>
         ))}
       </div>
