@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Fretted",
+    "description": "An interactive guitar fretboard tool and comprehensive learning platform designed to help users master guitar techniques and music theory through hands-on practice.",
+    "technologies": "Next.js / React / TypeScript / Mobx"
+  },
+  {
+    "id": 2,
+    "name": "Muunifi",
+    "description": "A social media platform for crypto enthusiasts to connect, share insights, and discuss blockchain and decentralized technologies.",
+    "technologies": "Next.js / React / TypeScript / Mobx / Firebase"
+  },
+  {
+    "id": 3,
+    "name": "Prophit",
+    "description": "A sports prop bet analyzer platform that aggregates current prop values and uses algorithms to generate projected points and insights, helping users make data-driven betting decisions.",
+    "technologies": "Next.js / React / TypeScript / Mobx"
+  },
+  {
+    "id": 4,
+    "name": "Prophit",
+    "description": "A sports prop bet analyzer platform that aggregates current prop values and uses algorithms to generate projected points and insights, helping users make data-driven betting decisions.",
+    "technologies": "Next.js / React / TypeScript / Mobx"
+  }
+]

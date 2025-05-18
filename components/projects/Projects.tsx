@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, RefObject } from "react";
 import styles from "./Projects.module.scss";
 import gsap from "gsap";
+import projects from "../../data/projects.json";
 
 const projectNames = ["Fretted", "Muunifi", "Prophit", "Something"];
 
@@ -57,7 +58,7 @@ const Projects: React.FC<ProjectsType> = () => {
 
     itemRefs.current.forEach((item, index) => {
       gsap.set(contentRefs.current[index], { opacity: 0, y: 20 });
-    
+
       gsap.from(item, {
         x: 1000,
         opacity: 1,
@@ -65,15 +66,15 @@ const Projects: React.FC<ProjectsType> = () => {
         delay: index * 0.3,
         ease: "circ.out",
       });
-    
+
       gsap.to(contentRefs.current[index], {
         opacity: 1,
         y: -20,
         duration: 0.4,
         ease: "power2.out",
-        delay: index * 0.3 + 0.7, 
+        delay: index * 0.3 + 0.7,
       });
-    
+
       if (index === itemRefs.current.length - 1) {
         setTimeout(() => setAnimationComplete(true), (index * 0.3 + 1) * 1000);
       }
@@ -126,8 +127,6 @@ const Projects: React.FC<ProjectsType> = () => {
           });
         });
       });
-
-
     }
 
     return () => {
@@ -135,7 +134,7 @@ const Projects: React.FC<ProjectsType> = () => {
     };
   }, []);
 
-  const backgroundColors = ["#000", "#2f1e2e", "#1e2f2f", "8321dwq"];
+  const backgroundColors = ["#213448", "#210F37", "#1e2f2f", "8321dwq"];
 
   console.log(isAnyProjectHovered);
 
@@ -143,9 +142,9 @@ const Projects: React.FC<ProjectsType> = () => {
     <>
       <div id="projects" className={styles.itemsWorks}>
         {isAnyProjectHovered && <div className={styles.overlay}></div>}
-        {projectNames.map((name, index) => (
+        {projects.map((project, index) => (
           <div
-            key={index}
+            key={project.id}
             ref={addToRefs}
             className={styles.itemWork}
             onMouseEnter={() => handleProjectHover(index)}
@@ -155,15 +154,12 @@ const Projects: React.FC<ProjectsType> = () => {
               <div className={styles.overlay}></div>
             )}
             <div className={styles.content} ref={addToContentRefs}>
-              <p className={styles.build}>
-                Next.js / React / Typescript / Mobx / Firebase
-              </p>
-              <p className={styles.name}>{name}</p>
-              <p className={styles.description}>
-                Follow along, subscribe for exclusive access, create your own
-                content or build your own community through muunifi’s specific
-                social financial tools.
-              </p>
+              <div className={styles.build}>
+                  {project.technologies}
+               
+              </div>
+              <p className={styles.name}>{project.name}</p>
+              <p className={styles.description}>{project.description}</p>
             </div>
           </div>
         ))}
